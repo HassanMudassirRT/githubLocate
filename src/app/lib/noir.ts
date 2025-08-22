@@ -29,6 +29,26 @@ const Noir = definePreset(Aura, {
                     focusBackground: '{zinc.700}',
                     color: '#ffffff',
                     focusColor: '#ffffff'
+                },
+                surface: {
+                    0: '#ffffff',
+                    50: '{zinc.50}',
+                    100: '{zinc.100}',
+                    200: '{zinc.200}',
+                    300: '{zinc.300}',
+                    400: '{zinc.400}',
+                    500: '{zinc.500}',
+                    600: '{zinc.600}',
+                    700: '{zinc.700}',
+                    800: '{zinc.800}',
+                    900: '{zinc.900}',
+                    950: '{zinc.950}'
+                },
+                text: {
+                    color: '{zinc.950}',
+                    hoverColor: '{zinc.800}',
+                    activeColor: '{zinc.700}',
+                    hintColor: '{zinc.500}'
                 }
             },
             dark: {
@@ -43,6 +63,26 @@ const Noir = definePreset(Aura, {
                     focusBackground: 'rgba(250, 250, 250, .24)',
                     color: 'rgba(255,255,255,.87)',
                     focusColor: 'rgba(255,255,255,.87)'
+                },
+                surface: {
+                    0: '{zinc.950}',
+                    50: '{zinc.900}',
+                    100: '{zinc.800}',
+                    200: '{zinc.700}',
+                    300: '{zinc.600}',
+                    400: '{zinc.500}',
+                    500: '{zinc.400}',
+                    600: '{zinc.300}',
+                    700: '{zinc.200}',
+                    800: '{zinc.100}',
+                    900: '{zinc.50}',
+                    950: '#ffffff'
+                },
+                text: {
+                    color: '{zinc.50}',
+                    hoverColor: '{zinc.100}',
+                    activeColor: '{zinc.200}',
+                    hintColor: '{zinc.400}'
                 }
             }
         }

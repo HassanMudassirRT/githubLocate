@@ -1,10 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [ButtonModule],
   templateUrl: './navbar.html',
 })
-export class Navbar {
+export class Navbar implements OnInit {
+  isDarkMode = signal(false);
 
+  ngOnInit() {
+    const element = document.documentElement;
+
+    const stored = localStorage.getItem('darkMode');
+    if (stored === '1') {
+      element.classList.add('my-app-dark');
+      this.isDarkMode.set(true);
+      return;
+    }
+    if (stored === '0') {
+      element.classList.remove('my-app-dark');
+      this.isDarkMode.set(false);
+      return;
+    }
+
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      element.classList.add('my-app-dark');
+      this.isDarkMode.set(true);
+    }
+  }
+
+  toggleDarkMode() {
+    const element = document.documentElement;
+    element.classList.toggle('my-app-dark');
+    this.isDarkMode.set(element.classList.contains('my-app-dark'));
+
+    localStorage.setItem('darkMode', this.isDarkMode() ? '1' : '0');
+  }
 }
