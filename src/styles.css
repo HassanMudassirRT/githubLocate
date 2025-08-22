@@ -1,2 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
 @import "tailwindcss";
 @plugin "tailwindcss-primeui";
+
+@theme {
+  --font-sans: "Fira Code", monospace;
+}

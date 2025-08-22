@@ -19,6 +19,12 @@ export const appConfig: ApplicationConfig = {
     providePrimeNG({
       theme: {
         preset: Noir,
+        options: {
+          cssLayer: {
+            name: 'primeng',
+            order: 'theme, base, primeng',
+          },
+        },
       },
     }),
   ],
