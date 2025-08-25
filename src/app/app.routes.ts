@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
+import { Home } from './features/home/home';
 
 export const routes: Routes = [
   {
     path: '',
     title: 'githubLocate | Search',
-    loadComponent: () => import('./features/home/home').then((m) => m.Home),
+    component: Home
   },
   {
     path: 'user/:username',
