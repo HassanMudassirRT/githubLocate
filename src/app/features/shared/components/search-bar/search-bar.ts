@@ -1,5 +1,6 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -26,6 +27,7 @@ import { User } from '../../interfaces/user';
     TooltipModule,
     ProgressSpinnerModule,
     FluidModule,
+    RouterLink,
     ReactiveFormsModule,
   ],
   templateUrl: './search-bar.html',
@@ -55,6 +57,7 @@ export class SearchBar implements OnInit {
             catchError(() => {
               this.isLoading.set(false);
               this.users.set([]);
+              
               return EMPTY;
             })
           );

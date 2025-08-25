@@ -1,4 +1,4 @@
-export interface User {
+export interface DetailedUser {
   login: string;
   id: number;
   node_id: string;
@@ -17,5 +17,18 @@ export interface User {
   received_events_url: string;
   type: string;
   site_admin: boolean;
-  score: number;
+  name: string | null;
+  company: string | null;
+  blog: string | null;
+  location: string | null;
+  email: string | null;
+  hireable: boolean | null;
+  bio: string | null;
+  twitter_username: string | null;
+  public_repos: number;
+  public_gists: number;
+  followers: number;
+  following: number;
+  created_at: string;
+  updated_at: string;
 }
