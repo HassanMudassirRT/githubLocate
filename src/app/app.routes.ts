@@ -1,22 +1,21 @@
 import { Routes } from '@angular/router';
-import { Home } from './features/home/home';
+import { HomePage } from './pages';
 
 export const routes: Routes = [
   {
     path: '',
     title: 'githubLocate | Search',
-    component: Home
+    component: HomePage,
   },
   {
     path: 'user/:username',
     title: 'githubLocate | User Profile',
-    loadComponent: () => import('./features/user/user').then((m) => m.User),
+    loadComponent: () => import('./pages').then((m) => m.UserPage),
   },
   {
     path: 'user/:username/repos',
     title: 'githubLocate | Repositories',
-    loadComponent: () =>
-      import('./features/view-repo/view-repo').then((m) => m.ViewRepo),
+    loadComponent: () => import('./pages').then((m) => m.ViewRepoPage),
   },
   {
     path: '**',

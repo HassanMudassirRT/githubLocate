@@ -71,7 +71,6 @@ export class SearchBar implements OnInit {
         );
         this.users.set(filteredData);
         this.isLoading.set(false);
-        console.log('Users found:', this.users());
       });
   }
 }

@@ -1,8 +1,6 @@
 import { Component, input, inject, effect, signal } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Observable, forkJoin, EMPTY, catchError, map } from 'rxjs';
-import { GithubService } from '../shared/services/github';
-import { CombinedUserData } from '../shared/interfaces';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
@@ -11,6 +9,8 @@ import { AvatarModule } from 'primeng/avatar';
 import { DividerModule } from 'primeng/divider';
 import { RippleModule } from 'primeng/ripple';
 import { RouterLink } from '@angular/router';
+import { GithubService } from '../../services/github';
+import { CombinedUserData } from '../../interfaces';
 
 @Component({
   selector: 'app-user',

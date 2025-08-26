@@ -17,8 +17,8 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
-import { GithubService } from '../shared/services/github';
-import { Repository } from '../shared/interfaces';
+import { GithubService } from '../../services/github';
+import { Repository } from '../../interfaces';
 
 @Component({
   selector: 'app-view-repo',

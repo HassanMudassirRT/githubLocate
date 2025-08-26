@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PrimeNG } from 'primeng/config';
-import { Navbar } from './features/navbar/navbar';
-import { Footer } from './features/footer/footer';
+import { Navbar, Footer } from './components';
 
 @Component({
   selector: 'app-root',
