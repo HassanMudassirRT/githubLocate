@@ -1,4 +1,5 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal, OnInit, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -7,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
   templateUrl: './navbar.html',
 })
 export class Navbar implements OnInit {
+  router = inject(Router);
   isDarkMode = signal(false);
 
   ngOnInit() {

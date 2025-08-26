@@ -1,7 +1,8 @@
 <header class="p-4 md:p-5 lg:p-6 xl:p-8 backdrop-blur-md border-b border-zinc-400/50">
   <nav class="flex justify-between items-center md:grid md:grid-cols-3">
     <h1
-      class="text-xl md:text-4xl xl:text-5xl col-start-2 col-end-3 text-center"
+      class="text-xl md:text-4xl xl:text-5xl col-start-2 col-end-3 text-center cursor-pointer transition-all duration-300"
+      (click)="router.navigate(['/'])"
     >
       githubLocate
     </h1>
