@@ -6,15 +6,10 @@ import { MessageService } from 'primeng/api';
 export const errorInterceptor: HttpInterceptorFn = (request, next) => {
   const messageService = inject(MessageService);
 
-  messageService.add({
-    severity: 'success',
-    summary: 'Success',
-    detail: 'This is a test success message',
-  });
-
   return next(request).pipe(
     catchError((error: HttpErrorResponse) => {
       let errorMessage = 'An unknown error occurred!';
+
       if (error.error instanceof ErrorEvent) {
         errorMessage = `Error: ${error.error.message}`;
       } else {
