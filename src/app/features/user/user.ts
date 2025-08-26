@@ -31,7 +31,7 @@ import { RouterLink } from '@angular/router';
 export class User {
   username = input.required<string>();
   isLoading = signal(true);
-  error = signal<boolean>(false);
+  isError = signal<boolean>(false);
   combinedData$!: Observable<CombinedUserData>;
 
   private githubService = inject(GithubService);
@@ -39,7 +39,7 @@ export class User {
   constructor() {
     effect(() => {
       this.isLoading.set(true);
-      this.error.set(false);
+      this.isError.set(false);
 
       const userObservables = {
         user: this.githubService.getUserDetails(this.username()),
@@ -59,7 +59,7 @@ export class User {
         catchError((err) => {
           console.error('Failed to load user data:', err);
           this.isLoading.set(false);
-          this.error.set(true);
+          this.isError.set(true);
 
           return EMPTY;
         })
