@@ -1,1 +1,86 @@
-<p>view-repo works!</p>
+<main
+  class="flex flex-col items-center min-h-screen p-4 md:p-8 lg:p-12 mb-[100px] md:mb-[120px] lg:mb-[150px]"
+>
+  <div class="flex flex-col items-center space-x-0 w-full max-w-4xl">
+    <h1
+      class="text-2xl font-bold my-4 mb-12 center md:text-3xl lg:text-4xl"
+    >
+      Repositories
+    </h1>
+
+    @if (loading()) {
+    <div class="flex flex-col items-center justify-center my-8">
+      <p-progressspinner
+        class="mx-auto my-4 w-12 h-12"
+        [strokeWidth]="'4'"
+        animationDuration="1s"
+        aria-label="Loading"
+      />
+      <p class="mt-4 text-center text-zinc-500 dark:text-zinc-400">
+        Fetching repositories...
+      </p>
+    </div>
+    } @else if (error()) {
+    <div class="text-center my-8 text-red-500">
+      <h2 class="text-2xl font-bold">Error</h2>
+      <p class="mt-2">
+        Could not fetch repositories. Please check the username and try again.
+      </p>
+    </div>
+    } @else {
+    <div class="space-y-4 w-full">
+      @if (repos().length > 0) { @for ( repo of repos(); track repo.id ) {
+      <div
+        class="flex flex-col justify-between items-start p-4 rounded-lg bg-zinc-200/50 dark:bg-zinc-800/50 border border-zinc-400/20"
+      >
+        <div class="flex-1 w-full">
+          <a
+            [href]="repo.html_url"
+            target="_blank"
+            class="text-lg font-bold text-primary-500 hover:underline break-words md:text-xl lg:text-2xl"
+          >
+            {{ repo.name }}
+          </a>
+          @if (repo.description) {
+          <p class="text-sm mt-1 text-zinc-600 dark:text-zinc-400">
+            {{ repo.description }}
+          </p>
+          }
+        </div>
+
+        <div
+          class="flex flex-wrap gap-4 mt-2 text-sm text-zinc-500 dark:text-zinc-400"
+        >
+          @if (repo.language) {
+          <span class="flex items-center gap-1.5">
+            <i class="pi pi-code"></i>
+            {{ repo.language }}
+          </span>
+          }
+          <span class="flex gap-1.5">
+            <i class="pi pi-star"></i>
+            {{ repo.stargazers_count }}
+          </span>
+          <span class="flex gap-1.5">
+            <i class="pi pi-eye"></i>
+            {{ repo.watchers_count }}
+          </span>
+        </div>
+      </div>
+      } } @else {
+      <p class="text-center my-4 text-zinc-500 dark:text-zinc-400">
+        No repositories found for this user.
+      </p>
+      }
+    </div>
+    <p-paginator
+      (onPageChange)="onPageChange($event)"
+      [rows]="paginatorState$.value.rows"
+      [totalRecords]="totalRecords()"
+      [rowsPerPageOptions]="rowsPerPageOptions()"
+      class="mt-6 w-full"
+    ></p-paginator>
+
+    }
+  </div>
+</main>
