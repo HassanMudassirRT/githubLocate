@@ -1,0 +1,67 @@
+<a
+  [href]="url()"
+  target="_blank"
+  [pTooltip]="provider().charAt(0).toUpperCase() + provider().slice(1)"
+  tooltipPosition="top"
+>
+  @switch (provider()) { @case ('github') {
+  <svg
+    github-icon
+    class="hover:opacity-80 transition-opacity size-6 lg:size-8"
+  ></svg>
+  } @case ('twitter') {
+  <svg
+    twitter-icon
+    class="hover:opacity-80 transition-opacity size-6 lg:size-8"
+  ></svg>
+
+  } @case ('facebook') {
+  <svg
+    facebook-icon
+    class="hover:opacity-80 transition-opacity size-6 lg:size-8"
+  ></svg>
+
+  } @case ('instagram') {
+  <svg
+    instagram-icon
+    class="hover:opacity-80 transition-opacity size-6 lg:size-8"
+  ></svg>
+
+  } @case ('twitch') {
+  <svg
+    twitch-icon
+    class="hover:opacity-80 transition-opacity size-6 lg:size-8"
+  ></svg>
+
+  } @case ('linkedin') {
+
+  <svg
+    linkedin-icon
+    class="hover:opacity-80 transition-opacity size-6 lg:size-8"
+  ></svg>
+  } @case ('mastodon') {
+
+  <svg
+    mastodon-icon
+    class="hover:opacity-80 transition-opacity size-6 lg:size-8"
+  ></svg>
+  } @case ('reddit') {
+  <svg
+    reddit-icon
+    class="hover:opacity-80 transition-opacity size-6 lg:size-8"
+  ></svg>
+
+  } @case ('bluesky') {
+  <svg
+    bluesky-icon
+    class="hover:opacity-80 transition-opacity size-6 lg:size-8"
+  ></svg>
+
+  } @default {
+
+  <svg
+    default-icon
+    class="hover:opacity-80 transition-opacity size-6 lg:size-8"
+  ></svg>
+  } }
+</a>

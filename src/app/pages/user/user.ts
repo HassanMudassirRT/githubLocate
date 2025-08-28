@@ -1,5 +1,6 @@
 import { Component, input, inject, effect, signal } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { Observable, forkJoin, EMPTY, catchError, map } from 'rxjs';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CardModule } from 'primeng/card';
@@ -8,7 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { DividerModule } from 'primeng/divider';
 import { RippleModule } from 'primeng/ripple';
-import { RouterLink } from '@angular/router';
+import { SocialMediaLink } from '../../components/social-media-link/social-media-link';
 import { GithubService } from '../../services/github';
 import { CombinedUserData } from '../../interfaces';
 
@@ -25,6 +26,7 @@ import { CombinedUserData } from '../../interfaces';
     DividerModule,
     RippleModule,
     RouterLink,
+    SocialMediaLink
   ],
   templateUrl: './user.html',
 })
@@ -44,16 +46,14 @@ export class User {
       const userObservables = {
         user: this.githubService.getUserDetails(this.username()),
         repos: this.githubService.getUserRepos(this.username()),
-        followers: this.githubService.getUserFollowers(this.username()),
-        following: this.githubService.getUserFollowing(this.username()),
+        socials: this.githubService.getUserSocials(this.username()),
       };
 
       this.combinedData$ = forkJoin(userObservables).pipe(
         map((data) => ({
           user: data.user,
           repos: data.repos.slice(0, 5),
-          followers: data.followers,
-          following: data.following,
+          socials: data.socials,
         })),
 
         catchError((err) => {

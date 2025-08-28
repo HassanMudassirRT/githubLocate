@@ -1,0 +1,10 @@
+export { GitHubIcon } from "./github";
+export { FacebookIcon } from "./facebook";
+export { InstagramIcon } from "./instagram";
+export { TwitchIcon } from "./twitch";
+export { LinkedInIcon } from "./linkedin";
+export { MastodonIcon } from "./mastodon";
+export { RedditIcon } from "./reddit";
+export { BlueskyIcon } from "./bluesky";
+export { TwitterIcon } from "./twitter";
+export { DefaultIcon } from "./default";

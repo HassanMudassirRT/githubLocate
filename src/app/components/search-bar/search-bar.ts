@@ -64,12 +64,7 @@ export class SearchBar implements OnInit {
         })
       )
       .subscribe((data) => {
-        const filteredData = data.items.filter((user) =>
-          user.login
-            .toLowerCase()
-            .includes(this.searchTerm.value?.toLowerCase() || '')
-        );
-        this.users.set(filteredData);
+        this.users.set(data.items);
         this.isLoading.set(false);
       });
   }

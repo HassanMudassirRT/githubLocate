@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {
   DetailedUser,
   Repository,
+  Social,
   User,
   UserSearchResponse,
 } from '../interfaces';
@@ -33,5 +34,9 @@ export class GithubService {
 
   getUserFollowing(username: string): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/users/${username}/following`);
+  }
+
+  getUserSocials(username: string): Observable<Social[]> {
+    return this.http.get<Social[]>(`${this.apiUrl}/users/${username}/social_accounts`);
   }
 }
