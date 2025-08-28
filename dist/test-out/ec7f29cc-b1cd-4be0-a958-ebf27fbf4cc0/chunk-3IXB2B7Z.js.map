@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["angular:jit:template:src/app/components/user-bio/user-bio.html", "src/app/components/user-bio/user-bio.ts"],
-  "sourcesContent": ["<p class=\"text-center text-sm md:text-base text-zinc-500 dark:text-zinc-400\">\n  {{ bio() }}\n</p>\n", "import { Component, input } from '@angular/core';\n\n@Component({\n  selector: 'app-user-bio',\n  imports: [],\n  templateUrl: './user-bio.html',\n})\nexport class UserBio {\n  bio = input.required<string>();\n}\n"],
-  "mappings": ";;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;ICOa;;;;;;AAPb;;AAOO,IAAM,UAAN,MAAMA,SAAO;YACZ,MAAM,SAAQ;;;;;AADT,cAAO,WAAA;MALnB,UAAU;QACT,UAAU;QACV,SAAS,CAAA;QACT,UAAA;OACD;OACY,OAAO;;;",
-  "names": ["UserBio"]
-}

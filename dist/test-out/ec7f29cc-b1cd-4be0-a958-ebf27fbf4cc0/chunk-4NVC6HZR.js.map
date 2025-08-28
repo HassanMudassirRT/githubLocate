@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["angular:jit:template:src/app/components/user-stats/user-stats.html", "src/app/components/user-stats/user-stats.ts"],
-  "sourcesContent": ["<div class=\"grid grid-cols-2 gap-4 text-center text-sm\">\n  @for (stat of stats(); track stat.label) {\n  <div\n    class=\"flex flex-col items-center justify-center p-2 rounded-lg bg-zinc-200/50 dark:bg-zinc-800/50\"\n  >\n    <span class=\"text-xl font-bold\">{{ stat.value }}</span>\n    <span class=\"text-zinc-600 dark:text-zinc-400\">{{ stat.label }}</span>\n  </div>\n  }\n</div>\n", "import { Component, input } from '@angular/core';\nimport { UserStat } from '../../interfaces';\n\n@Component({\n  selector: 'app-user-stats',\n  imports: [],\n  templateUrl: './user-stats.html',\n})\nexport class UserStats {\n  stats = input.required<UserStat[]>();\n}\n"],
-  "mappings": ";;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;ICQa;;;;;;AARb;;AAQO,IAAM,YAAN,MAAMA,WAAS;cACZ,MAAM,SAAQ;;;;;AADX,gBAAS,WAAA;MALrB,UAAU;QACT,UAAU;QACV,SAAS,CAAA;QACT,UAAA;OACD;OACY,SAAS;;;",
-  "names": ["UserStats"]
-}

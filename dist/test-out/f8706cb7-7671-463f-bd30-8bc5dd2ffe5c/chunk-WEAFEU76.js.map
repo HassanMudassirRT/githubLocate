@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["angular:jit:template:src/app/components/user-aliases/user-aliases.html", "src/app/components/user-aliases/user-aliases.ts"],
-  "sourcesContent": ["<h1\n  class=\"text-3xl md:text-4xl font-extrabold text-primary-500 text-center mb-1.5\"\n>\n  {{ name() || login() }}\n</h1>\n<p class=\"text-lg md:text-xl font-medium text-center text-zinc-600 dark:text-zinc-400\">\n  {{ login() }}\n</p>\n", "import { Component, input } from '@angular/core';\n\n@Component({\n  selector: 'app-user-aliases',\n  imports: [],\n  templateUrl: './user-aliases.html',\n})\nexport class UserAliases {\n  name = input<string | null>('');\n  login = input.required<string>();\n}\n"],
-  "mappings": ";;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;ICOa;;;;;;AAPb;;AAOO,IAAM,cAAN,MAAMA,aAAW;aACf,MAAqB,EAAE;cACtB,MAAM,SAAQ;;;;;;AAFX,kBAAW,WAAA;MALvB,UAAU;QACT,UAAU;QACV,SAAS,CAAA;QACT,UAAA;OACD;OACY,WAAW;;;",
-  "names": ["UserAliases"]
-}

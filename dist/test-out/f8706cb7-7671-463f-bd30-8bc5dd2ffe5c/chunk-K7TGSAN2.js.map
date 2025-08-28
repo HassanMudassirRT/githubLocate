@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["angular:jit:template:src/app/components/footer/footer.html", "src/app/components/footer/footer.ts"],
-  "sourcesContent": ["<footer class=\"fixed bottom-0 start-0 w-screen backdrop-blur-md border-t border-zinc-400/50\">\n  <article class=\"p-6\">\n    <nav>\n      <h2 class=\"text-xs md:text-sm lg:text-lg xl:text-xl text-center\">\n        &copy; 2025 githubLocate. All rights reserved.\n      </h2>\n    </nav>\n  </article>\n</footer>\n", "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-footer',\n  imports: [],\n  templateUrl: './footer.html',\n})\nexport class Footer {\n\n}\n"],
-  "mappings": ";;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;ICOa;;;;;;AAPb;AAOO,IAAM,SAAN,MAAMA,QAAM;;AAAN,aAAM,WAAA;MALlB,UAAU;QACT,UAAU;QACV,SAAS,CAAA;QACT,UAAA;OACD;OACY,MAAM;;;",
-  "names": ["Footer"]
-}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["angular:jit:template:src/app/components/user-search-item/user-search-item.html", "src/app/components/user-search-item/user-search-item.ts"],
-  "sourcesContent": ["<div\n  class=\"flex justify-between items-center p-2 border-0 border-b-1 border-zinc-400/20 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50\"\n  [style.marginTop]=\"first() ? '0.5rem' : '0rem'\"\n  [routerLink]=\"'/user/' + user().login\"\n>\n  <img\n    icon=\"pi pi-user\"\n    [src]=\"user().avatar_url\"\n    [alt]=\"user().login\"\n    class=\"w-8 h-8 md:w-10 md:h-10 rounded-[999px] ml-3 bg-zinc-800\"\n  />\n  <p class=\"flex-1 mx-4 text-sm md:text-base lg:text-lg break-all\">\n    {{ user().login }}\n  </p>\n</div>\n", "import { Component, input } from '@angular/core';\nimport { RouterLink } from '@angular/router';\nimport { User } from '../../interfaces';\n\n@Component({\n  selector: 'app-user-search-item',\n  imports: [RouterLink],\n  templateUrl: './user-search-item.html',\n})\nexport class UserSearchItem {\n  user = input.required<User>();\n  first = input.required<boolean>();\n}\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;ICSa;;;;;;AATb;AACA;;AAQO,IAAM,iBAAN,MAAMA,gBAAc;aAClB,MAAM,SAAQ;cACb,MAAM,SAAQ;;;;;;AAFX,qBAAc,WAAA;MAL1B,UAAU;QACT,UAAU;QACV,SAAS,CAAC,UAAU;QACpB,UAAA;OACD;OACY,cAAc;;;",
-  "names": ["UserSearchItem"]
-}

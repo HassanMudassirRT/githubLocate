@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/components/search-bar/search-bar.spec.ts"],
-  "sourcesContent": ["import { ComponentFixture, TestBed } from '@angular/core/testing';\n\nimport { SearchBar } from './search-bar';\n\ndescribe('SearchBar', () => {\n  let component: SearchBar;\n  let fixture: ComponentFixture<SearchBar>;\n\n  beforeEach(async () => {\n    await TestBed.configureTestingModule({\n      imports: [SearchBar]\n    })\n    .compileComponents();\n\n    fixture = TestBed.createComponent(SearchBar);\n    component = fixture.componentInstance;\n    fixture.detectChanges();\n  });\n\n  it('should create', () => {\n    expect(component).toBeTruthy();\n  });\n});\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;AAAA;;;AAEA;AAEA,aAAS,aAAa,MAAK;AACzB,UAAI;AACJ,UAAI;AAEJ,iBAAW,MAAW;AACpB,cAAM,QAAQ,uBAAuB;UACnC,SAAS,CAAC,SAAS;SACpB,EACA,kBAAiB;AAElB,kBAAU,QAAQ,gBAAgB,SAAS;AAC3C,oBAAY,QAAQ;AACpB,gBAAQ,cAAa;MACvB,EAAC;AAED,SAAG,iBAAiB,MAAK;AACvB,eAAO,SAAS,EAAE,WAAU;MAC9B,CAAC;IACH,CAAC;;;",
-  "names": []
-}
