@@ -12,6 +12,7 @@ import { RippleModule } from 'primeng/ripple';
 import { SocialMediaLink } from '../../components/social-media-link/social-media-link';
 import { GithubService } from '../../services/github';
 import { CombinedUserData } from '../../interfaces';
+import { RepoCard } from "../../components/repo-card/repo-card";
 
 @Component({
   selector: 'app-user',
@@ -26,8 +27,9 @@ import { CombinedUserData } from '../../interfaces';
     DividerModule,
     RippleModule,
     RouterLink,
-    SocialMediaLink
-  ],
+    SocialMediaLink,
+    RepoCard
+],
   templateUrl: './user.html',
 })
 export class User {

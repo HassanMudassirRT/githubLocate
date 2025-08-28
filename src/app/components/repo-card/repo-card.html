@@ -1,0 +1,37 @@
+<div
+  class="flex flex-col justify-between items-start p-4 rounded-lg bg-zinc-200/50 dark:bg-zinc-800/50 border border-zinc-400/20 mb-4"
+>
+  <div class="flex-1 w-full">
+    <a
+      [href]="repo().html_url"
+      target="_blank"
+      class="text-lg font-bold text-primary-500 hover:underline break-words md:text-xl lg:text-2xl"
+    >
+      {{ repo().name }}
+    </a>
+    @if (repo().description) {
+    <p class="text-sm mt-1 text-zinc-600 dark:text-zinc-400">
+      {{ repo().description }}
+    </p>
+    }
+  </div>
+
+  <div
+    class="flex flex-wrap gap-4 mt-2 text-sm text-zinc-500 dark:text-zinc-400"
+  >
+    @if (repo().language) {
+    <span class="flex items-center gap-1.5">
+      <i class="pi pi-code"></i>
+      {{ repo().language }}
+    </span>
+    }
+    <span class="flex gap-1.5">
+      <i class="pi pi-star"></i>
+      {{ repo().stargazers_count }}
+    </span>
+    <span class="flex gap-1.5">
+      <i class="pi pi-eye"></i>
+      {{ repo().watchers_count }}
+    </span>
+  </div>
+</div>

@@ -17,6 +17,7 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { RepoCard } from "../../components/repo-card/repo-card";
 import { GithubService } from '../../services/github';
 import { Repository } from '../../interfaces';
 
@@ -28,7 +29,8 @@ import { Repository } from '../../interfaces';
     ProgressSpinnerModule,
     IconFieldModule,
     InputIconModule,
-  ],
+    RepoCard
+],
   templateUrl: './view-repo.html',
 })
 export class ViewRepo {
