@@ -1,7 +1,7 @@
 import { Component, input, inject, effect, signal } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Observable, forkJoin, EMPTY, catchError, map } from 'rxjs';
+import { Observable, forkJoin, EMPTY, catchError, map, tap } from 'rxjs';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
@@ -9,10 +9,9 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { DividerModule } from 'primeng/divider';
 import { RippleModule } from 'primeng/ripple';
-import { SocialMediaLink } from '../../components/social-media-link/social-media-link';
+import { RepoList, UserStats, UserSocials, UserAliases, UserBio } from '../../components';
 import { GithubService } from '../../services/github';
 import { CombinedUserData } from '../../interfaces';
-import { RepoCard } from "../../components/repo-card/repo-card";
 
 @Component({
   selector: 'app-user',
@@ -27,9 +26,12 @@ import { RepoCard } from "../../components/repo-card/repo-card";
     DividerModule,
     RippleModule,
     RouterLink,
-    SocialMediaLink,
-    RepoCard
-],
+    RepoList,
+    UserStats,
+    UserSocials,
+    UserAliases,
+    UserBio,
+  ],
   templateUrl: './user.html',
 })
 export class User {
@@ -45,31 +47,40 @@ export class User {
       this.isLoading.set(true);
       this.isError.set(false);
 
-      const userObservables = {
+      this.combinedData$ = forkJoin({
         user: this.githubService.getUserDetails(this.username()),
         repos: this.githubService.getUserRepos(this.username()),
         socials: this.githubService.getUserSocials(this.username()),
-      };
+      }).pipe(
+        map((data) => {
+          const userStats = [
+            { label: 'Public Repos', value: data.user.public_repos },
+            { label: 'Followers', value: data.user.followers },
+            { label: 'Following', value: data.user.following },
+            { label: 'Public Gists', value: data.user.public_gists },
+          ];
 
-      this.combinedData$ = forkJoin(userObservables).pipe(
-        map((data) => ({
-          user: data.user,
-          repos: data.repos.slice(0, 5),
-          socials: data.socials,
-        })),
-
+          return {
+            user: data.user,
+            repos: data.repos.slice(0, 5),
+            socials: [...data.socials, {url: data.user.html_url, provider: "github"} ],
+            userStats,
+          };
+        }),
+        
         catchError((err) => {
           console.error('Failed to load user data:', err);
           this.isLoading.set(false);
           this.isError.set(true);
-
+          
           return EMPTY;
-        })
-      );
+        }),
 
-      this.combinedData$.subscribe(() => {
-        this.isLoading.set(false);
-      });
+        tap(() => { 
+          console.log('TAG-001: User data loaded successfully');
+          this.isLoading.set(false)}
+        )
+      );
     });
   }
 }

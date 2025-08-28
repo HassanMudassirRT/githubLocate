@@ -1,112 +1,43 @@
 <main
   class="flex flex-col justify-center items-center min-h-screen p-4 md:p-8 lg:p-12 mb-[100px] md:mb-[120px] lg:mb-[150px]"
 >
-  @if (isLoading()) {
-  <div class="flex flex-col items-center justify-center my-8">
-    <p-progressspinner
-      class="mx-auto my-4 w-12 h-12"
-      [strokeWidth]="'4'"
-      animationDuration="1s"
-      aria-label="Loading"
-    />
-    <p class="mt-4 text-center">Fetching user data...</p>
-  </div>
-  } @else if (isError()) {
+  @if (combinedData$ | async; as data) {
 
-  <div class="text-center my-8 text-red-500">
-    <h2 class="text-2xl font-bold">Error</h2>
-    <p class="mt-2">
-      Could not find the user or an issue occurred. Please check the username
-      and try again.
-    </p>
-  </div>
-  } @else if (combinedData$ | async; as data) {
-  <!-- User details -->
+  <!-- User Details -->
   <p-card
     [style]="{ overflow: 'hidden' }"
     class="w-full h-full lg:w-3/4 xl:w-2/3 border-none shadow-none bg-zinc-100 dark:bg-zinc-900/50"
   >
     <div class="flex flex-col items-center space-x-0">
-      <!-- User avatar -->
+      <!-- Avatar -->
       <div class="flex flex-col items-center space-y-4">
         <p-avatar
           [image]="data.user.avatar_url"
           [style]="{ width: '10rem', height: '10rem' }"
           class="border-4 border-primary-500/20"
           shape="circle"
-        ></p-avatar>
+        />
 
-        <!-- User name -->
-        <h1
-          class="text-3xl md:text-4xl font-extrabold text-primary-500 text-center md:text-left"
-        >
-          {{ data.user.name || data.user.login }}
-        </h1>
-        <p
-          class="text-lg md:text-xl font-medium text-zinc-600 dark:text-zinc-400"
-        >
-          {{ data.user.login }}
-        </p>
+        <!-- Aliases -->
+        <app-user-aliases [name]="data.user.name" [login]="data.user.login" />
 
-        <!-- User bio -->
+        <!-- Bio -->
         @if (data.user.bio) {
-        <p
-          class="text-center text-sm md:text-base text-zinc-500 dark:text-zinc-400"
-        >
-          {{ data.user.bio }}
-        </p>
+        <app-user-bio [bio]="data.user.bio" />
         }
 
-        <!-- Social links -->
-        <div class="flex space-x-4 items-center mt-2">
-          <app-social-media-link [url]="data.user.html_url" provider="github" />
-
-          @for (social of data.socials; track social.provider) {
-          <app-social-media-link
-            [provider]="social.provider"
-            [url]="social.url"
-          />
-          }
-        </div>
+        <!-- Socials -->
+        <app-user-socials [socials]="data.socials" />
       </div>
 
-      <!-- User Stats -->
       <div class="flex-1 w-full mt-8">
-        <div class="grid grid-cols-2 gap-4 text-center text-sm">
-          <div
-            class="flex flex-col items-center justify-center p-2 rounded-lg bg-zinc-200/50 dark:bg-zinc-800/50"
-          >
-            <span class="text-xl font-bold">{{ data.user.public_repos }}</span>
-            <span class="text-zinc-600 dark:text-zinc-400">Public Repos</span>
-          </div>
-          <div
-            class="flex flex-col items-center justify-center p-2 rounded-lg bg-zinc-200/50 dark:bg-zinc-800/50"
-          >
-            <span class="text-xl font-bold">{{ data.user.followers }}</span>
-            <span class="text-zinc-600 dark:text-zinc-400">Followers</span>
-          </div>
-          <div
-            class="flex flex-col items-center justify-center p-2 rounded-lg bg-zinc-200/50 dark:bg-zinc-800/50"
-          >
-            <span class="text-xl font-bold">{{ data.user.following }}</span>
-            <span class="text-zinc-600 dark:text-zinc-400">Following</span>
-          </div>
-          <div
-            class="flex flex-col items-center justify-center p-2 rounded-lg bg-zinc-200/50 dark:bg-zinc-800/50"
-          >
-            <span class="text-xl font-bold">{{ data.user.public_gists }}</span>
-            <span class="text-zinc-600 dark:text-zinc-400">Public Gists</span>
-          </div>
-        </div>
+        <!-- Stats -->
+        <app-user-stats [stats]="data.userStats" />
+
         <p-divider class="my-6"></p-divider>
 
         <!-- Repositories -->
-        <h3 class="text-2xl font-bold mb-4">Repositories</h3>
-        <div class="space-y-4">
-          @for (repo of data.repos; track repo.id) {
-          <app-repo-card [repo]="repo" />
-          }
-        </div>
+        <app-repo-list [repos]="data.repos" />
 
         <!-- View All Repositories Button -->
         @if (data.repos.length > 0) {
@@ -120,5 +51,27 @@
       </div>
     </div>
   </p-card>
+
+  } @else if (isError()) {
+
+  <div class="text-center my-8 text-red-500">
+    <h2 class="text-2xl font-bold">Error</h2>
+    <p class="mt-2">
+      Could not find the user or an issue occurred. Please check the username
+      and try again.
+    </p>
+  </div>
+  } @else if (isLoading()) {
+
+  <div class="flex flex-col items-center justify-center my-8">
+    <p-progressspinner
+      class="mx-auto my-4 w-12 h-12"
+      [strokeWidth]="'4'"
+      animationDuration="1s"
+      aria-label="Loading"
+    />
+    <p class="mt-4 text-center">Fetching user data...</p>
+  </div>
+
   }
 </main>

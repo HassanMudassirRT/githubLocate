@@ -1,0 +1,10 @@
+<div class="grid grid-cols-2 gap-4 text-center text-sm">
+  @for (stat of stats(); track stat.label) {
+  <div
+    class="flex flex-col items-center justify-center p-2 rounded-lg bg-zinc-200/50 dark:bg-zinc-800/50"
+  >
+    <span class="text-xl font-bold">{{ stat.value }}</span>
+    <span class="text-zinc-600 dark:text-zinc-400">{{ stat.label }}</span>
+  </div>
+  }
+</div>

@@ -1,0 +1,5 @@
+<div class="flex space-x-4 items-center mt-2">
+  @for (social of socials(); track social.provider) {
+  <app-social-media-link [provider]="social.provider" [url]="social.url" />
+  }
+</div>
