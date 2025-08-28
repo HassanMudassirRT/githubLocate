@@ -9,7 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { DividerModule } from 'primeng/divider';
 import { RippleModule } from 'primeng/ripple';
-import { RepoList, UserStats, UserSocials, UserAliases, UserBio } from '../../components';
+import { RepoList, UserStats, UserSocials, UserAliases, UserBio, Loader, ErrorMessage } from '../../components';
 import { GithubService } from '../../services/github';
 import { CombinedUserData } from '../../interfaces';
 
@@ -31,13 +31,16 @@ import { CombinedUserData } from '../../interfaces';
     UserSocials,
     UserAliases,
     UserBio,
-  ],
+    Loader,
+    ErrorMessage
+],
   templateUrl: './user.html',
 })
 export class User {
   username = input.required<string>();
   isLoading = signal(true);
   isError = signal<boolean>(false);
+
   combinedData$!: Observable<CombinedUserData>;
 
   private githubService = inject(GithubService);
@@ -63,7 +66,7 @@ export class User {
           return {
             user: data.user,
             repos: data.repos.slice(0, 5),
-            socials: [...data.socials, {url: data.user.html_url, provider: "github"} ],
+            socials: [...data.socials, {url: data.user.html_url, provider: "GitHub"} ],
             userStats,
           };
         }),

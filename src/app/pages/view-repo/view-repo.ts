@@ -17,7 +17,7 @@ import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
-import { RepoCard } from "../../components/repo-card/repo-card";
+import { RepoCard, ErrorMessage, Loader } from '../../components';
 import { GithubService } from '../../services/github';
 import { Repository } from '../../interfaces';
 
@@ -29,23 +29,23 @@ import { Repository } from '../../interfaces';
     ProgressSpinnerModule,
     IconFieldModule,
     InputIconModule,
-    RepoCard
-],
+    RepoCard,
+    ErrorMessage,
+    Loader,
+  ],
   templateUrl: './view-repo.html',
 })
 export class ViewRepo {
   username = input.required<string>();
+  totalRecords = signal(0);
+  isLoading = signal(true);
+  isError = signal(false);
+  repos = signal<Repository[]>([]);
 
   protected paginatorState$ = new BehaviorSubject<PaginatorState>({
     first: 0,
     rows: 10,
   });
-
-  totalRecords = signal(0);
-  loading = signal(true);
-  error = signal(false);
-
-  public repos = signal<Repository[]>([]);
 
   protected rowsPerPageOptions = computed(() => {
     const total = this.totalRecords();
@@ -60,12 +60,12 @@ export class ViewRepo {
 
   constructor() {
     effect(() => {
-      const currentUsername = this.username();
-      if (!currentUsername) return;
+      this.isLoading.set(true);
+      this.isError.set(false);
 
       combineLatest([this.paginatorState$])
         .pipe(
-          switchMap(() => this.githubService.getUserDetails(currentUsername)),
+          switchMap(() => this.githubService.getUserDetails(this.username())),
           switchMap((userDetails) => {
             this.totalRecords.set(userDetails.public_repos);
 
@@ -73,20 +73,20 @@ export class ViewRepo {
             const page = (state.first ?? 0) / (state.rows ?? 10) + 1;
             const perPage = state.rows ?? 10;
             return this.githubService.getUserRepos(
-              currentUsername,
+              this.username(),
               perPage,
               page
             );
           }),
           catchError((err) => {
-            this.loading.set(false);
-            this.error.set(true);
+            this.isLoading.set(false);
+            this.isError.set(true);
             return EMPTY;
           })
         )
         .subscribe((repos) => {
           this.repos.set(repos);
-          this.loading.set(false);
+          this.isLoading.set(false);
         });
     });
   }

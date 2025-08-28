@@ -7,3 +7,6 @@ export { UserStats } from './user-stats/user-stats';
 export { UserSocials } from '../user-socials/user-socials';
 export { UserAliases } from './user-aliases/user-aliases';
 export { UserBio } from './user-bio/user-bio';
+export { RepoCard } from './repo-card/repo-card';
+export { Loader } from './loader/loader';
+export { ErrorMessage } from './error-message/error-message';

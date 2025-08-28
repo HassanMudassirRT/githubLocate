@@ -4,7 +4,7 @@
   [pTooltip]="provider().charAt(0).toUpperCase() + provider().slice(1)"
   tooltipPosition="top"
 >
-  @switch (provider()) { @case ('github') {
+  @switch (provider().toLowerCase()) { @case ('github') {
   <svg
     github-icon
     class="hover:opacity-80 transition-opacity size-6 lg:size-8"
