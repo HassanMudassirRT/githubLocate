@@ -1,0 +1,15 @@
+<div
+  class="flex justify-between items-center p-2 border-0 border-b-1 border-zinc-400/20 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50"
+  [style.marginTop]="first() ? '0.5rem' : '0rem'"
+  [routerLink]="'/user/' + user().login"
+>
+  <img
+    icon="pi pi-user"
+    [src]="user().avatar_url"
+    [alt]="user().login"
+    class="w-8 h-8 md:w-10 md:h-10 rounded-[999px] ml-3 bg-zinc-800"
+  />
+  <p class="flex-1 mx-4 text-sm md:text-base lg:text-lg break-all">
+    {{ user().login }}
+  </p>
+</div>

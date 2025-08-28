@@ -1,14 +1,14 @@
-<article
-  class="w-full max-w-4xl mx-auto px-4 flex flex-1 flex-col justify-center items-center min-h-[65vh]"
+<main
+  class="flex flex-col justify-center items-center min-h-[65vh] p-4 md:p-8 lg:p-12"
 >
-  <!-- Search input field -->
+  <!-- Search -->
   <p-iconfield class="w-full max-w-4xl">
     <p-inputicon class="pi pi-search ml-0.5" />
     <input
       type="text"
       pInputText
       pSize="large"
-      fluid=""
+      fluid
       [formControl]="searchTerm"
       class="text-sm md:text-base lg:text-xl"
       placeholder="Enter GitHub username and press Enter"
@@ -17,37 +17,18 @@
     />
   </p-iconfield>
 
-  <!-- List of search items -->
+  <!-- Users List-->
   <article
     class="w-full max-h-[20vh] max-w-4xl flex flex-col border-t-0 border-1 border-zinc-400/40 overflow-y-scroll dark:bg-zinc-950 bg-white"
   >
     @if (isLoading()) {
-    <p-progressspinner
-      class="mx-auto my-4 w-10 h-10"
-      [strokeWidth]="'4'"
-      animationDuration="1s"
-      aria-label="Loading"
-    />
+    <app-loader label="Fetching users..." aria-label="Loading"/>
     } @else if (users().length !== 0) { @for (user of users(); track user.id) {
-    <div
-      class="flex justify-between items-center p-2 border-0 border-b-1 border-zinc-400/20 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50"
-      [style.marginTop]="$first ? '0.5rem' : '0rem'"
-      [routerLink]="'/user/' + user.login"
-    >
-      <img
-        icon="pi pi-user"
-        [src]="user.avatar_url"
-        [alt]="user.login"
-        class="w-8 h-8 md:w-10 md:h-10 rounded-[999px] ml-3 bg-zinc-800"
-      />
-      <p class="flex-1 mx-4 text-sm md:text-base lg:text-lg break-all">
-        {{ user.login }}
-      </p>
-    </div>
+    <app-user-search-item [user]="user" [first]="$first" />
     }} @else if (hasSearched()) {
     <p class="text-center my-4 text-zinc-500 dark:text-zinc-400">
       No users found.
     </p>
     }
   </article>
-</article>
+</main>

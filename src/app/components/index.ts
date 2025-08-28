@@ -10,3 +10,4 @@ export { UserBio } from './user-bio/user-bio';
 export { RepoCard } from './repo-card/repo-card';
 export { Loader } from './loader/loader';
 export { ErrorMessage } from './error-message/error-message';
+export { UserSearchItem } from './user-search-item/user-search-item';

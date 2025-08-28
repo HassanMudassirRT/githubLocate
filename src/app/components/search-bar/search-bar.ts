@@ -1,13 +1,10 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { TooltipModule } from 'primeng/tooltip';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { FluidModule } from 'primeng/fluid';
-
 import {
   catchError,
   debounceTime,
@@ -15,6 +12,8 @@ import {
   switchMap,
   EMPTY,
 } from 'rxjs';
+import { Loader } from '../loader/loader';
+import { UserSearchItem } from '../user-search-item/user-search-item';
 import { GithubService } from '../../services/github';
 import { User } from '../../interfaces/user';
 
@@ -25,10 +24,10 @@ import { User } from '../../interfaces/user';
     IconFieldModule,
     InputIconModule,
     TooltipModule,
-    ProgressSpinnerModule,
     FluidModule,
-    RouterLink,
     ReactiveFormsModule,
+    UserSearchItem,
+    Loader
   ],
   templateUrl: './search-bar.html',
 })

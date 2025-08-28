@@ -80,7 +80,6 @@ export class User {
         }),
 
         tap(() => { 
-          console.log('TAG-001: User data loaded successfully');
           this.isLoading.set(false)}
         )
       );
