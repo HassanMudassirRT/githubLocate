@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["angular:jit:template:src/app/components/repo-list/repo-list.html", "src/app/components/repo-list/repo-list.ts"],
+  "sourcesContent": ["<h3 class=\"text-2xl font-bold mb-4\">Repositories</h3>\n<div class=\"space-y-4\">\n  @for (repo of repos(); track repo.id) {\n  <app-repo-card [repo]=\"repo\" />\n  }\n</div>\n", "import { Component, input } from '@angular/core';\nimport { Repository } from '../../interfaces';\nimport { RepoCard } from '../repo-card/repo-card';\n\n@Component({\n  selector: 'app-repo-list',\n  imports: [RepoCard],\n  templateUrl: './repo-list.html',\n})\nexport class RepoList {\n  repos = input.required<Repository[]>();\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;ICSa;;;;;;AATb;AAEA;;AAOO,IAAM,WAAN,MAAMA,UAAQ;cACX,MAAM,SAAQ;;;;;AADX,eAAQ,WAAA;MALpB,UAAU;QACT,UAAU;QACV,SAAS,CAAC,QAAQ;QAClB,UAAA;OACD;OACY,QAAQ;;;",
+  "names": ["RepoList"]
+}
