@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { SocialMediaLink } from '../components';
-import { Social } from '../interfaces';
+import { SocialMediaLink } from '../social-media-link/social-media-link';
+import { Social } from '../../interfaces';
 
 @Component({
   selector: 'app-user-socials',
