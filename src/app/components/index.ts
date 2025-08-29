@@ -4,7 +4,7 @@ export { SearchBar } from './search-bar/search-bar';
 export { RepoList } from './repo-list/repo-list';
 export { SocialMediaLink } from './social-media-link/social-media-link';
 export { UserStats } from './user-stats/user-stats';
-export { UserSocials } from '../user-socials/user-socials';
+export { UserSocials } from './user-socials/user-socials';
 export { UserAliases } from './user-aliases/user-aliases';
 export { UserBio } from './user-bio/user-bio';
 export { RepoCard } from './repo-card/repo-card';

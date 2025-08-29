@@ -13,7 +13,7 @@ export const errorInterceptor: HttpInterceptorFn = (request, next) => {
       if (error.error instanceof ErrorEvent) {
         errorMessage = `Error: ${error.error.message}`;
       } else {
-        errorMessage = `Backend returned code ${error.status}, body was: ${error.error}`;
+        errorMessage = `Backend returned code ${error.status}, body was: ${error.error.message}`;
       }
 
       messageService.add({
