@@ -1,34 +1,42 @@
 <main
-  class="flex flex-col justify-center items-center min-h-[65vh] p-4 md:p-8 lg:p-12"
+  class="relative flex justify-center items-center min-h-[65vh] p-4 md:p-8 lg:p-12"
 >
-  <!-- Search -->
-  <p-iconfield class="w-full max-w-4xl">
-    <p-inputicon class="pi pi-search ml-0.5" />
-    <input
-      type="text"
-      pInputText
-      pSize="large"
-      fluid
-      [formControl]="searchTerm"
-      class="text-sm md:text-base lg:text-xl"
-      placeholder="Enter GitHub username and press Enter"
-      pTooltip="Search GitHub username..."
-      tooltipPosition="top"
-    />
-  </p-iconfield>
+  <div class="w-full max-w-4xl relative">
+    <!-- Search -->
+    <p-iconfield class="w-full">
+      <p-inputicon class="pi pi-search ml-0.5" />
+      <input
+        type="text"
+        pInputText
+        pSize="large"
+        fluid
+        [formControl]="searchTerm"
+        class="text-sm md:text-base lg:text-xl border border-zinc-400/40"
+        placeholder="Enter GitHub username and press Enter"
+        pTooltip="Search GitHub username..."
+        tooltipPosition="top"
+      />
+    </p-iconfield>
 
-  <!-- Users List-->
-  <article
-    class="w-full max-h-[20vh] max-w-4xl flex flex-col border-t-0 border-1 border-zinc-400/40 overflow-y-scroll dark:bg-zinc-950 bg-white"
-  >
-    @if (isLoading()) {
-    <app-loader label="Fetching users..." aria-label="Loading"/>
-    } @else if (users().length !== 0) { @for (user of users(); track user.id) {
-    <app-user-search-item [user]="user" [first]="$first" />
-    }} @else if (hasSearched()) {
-    <p class="text-center my-4 text-zinc-500 dark:text-zinc-400">
-      No users found.
-    </p>
+    <!-- Users List -->
+    @if (isLoading() || hasSearched()) {
+      <article
+        class="absolute top-full left-0 w-full max-h-[20vh] flex flex-col 
+               border border-t-0 border-zinc-400/40 overflow-y-scroll 
+               dark:bg-zinc-950 bg-white rounded-b-xl"
+      >
+        @if (isLoading()) {
+          <app-loader label="Fetching users..." aria-label="Loading"/>
+        } @else if (users().length !== 0) {
+          @for (user of users(); track user.id) {
+            <app-user-search-item [user]="user" [first]="$first" />
+          }
+        } @else {
+          <p class="text-center my-4 text-zinc-500 dark:text-zinc-400">
+            No users found.
+          </p>
+        }
+      </article>
     }
-  </article>
+  </div>
 </main>
