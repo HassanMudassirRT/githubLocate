@@ -100,8 +100,6 @@ describe('SearchBar', () => {
 
     component.searchTerm.setValue('test');
     
-    // expect(component.isLoading()).toBe(true);
-
     tick(501);
 
     expect(githubService.searchUsers).toHaveBeenCalledWith('test');
@@ -130,8 +128,6 @@ describe('SearchBar', () => {
     );
 
     component.searchTerm.setValue('error');
-
-    // expect(component.isLoading()).toBe(true);
 
     tick(501);
 

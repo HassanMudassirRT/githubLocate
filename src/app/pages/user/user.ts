@@ -47,7 +47,7 @@ import { CombinedUserData } from '../../interfaces';
 export class User {
   username = input.required<string>();
   isLoading = signal(true);
-  isError = signal<boolean>(false);
+  isError = signal(false);
 
   combinedData$!: Observable<CombinedUserData>;
 

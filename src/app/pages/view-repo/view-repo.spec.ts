@@ -16,6 +16,7 @@ describe('ViewRepo', () => {
 
     fixture = TestBed.createComponent(ViewRepo);
     component = fixture.componentInstance;
+    
     fixture.componentRef.setInput('username', 'erisa');
     fixture.detectChanges();
   });

@@ -1,0 +1,38 @@
+import { DetailedUser } from '../interfaces';
+
+const user: DetailedUser = {
+  login: 'Erisa',
+  id: 14004943,
+  node_id: 'MDQ6VXNlcjE0MDA0OTQz',
+  avatar_url: 'https://avatars.githubusercontent.com/u/14004943?v=4',
+  gravatar_id: '',
+  url: 'https://api.github.com/users/Erisa',
+  html_url: 'https://github.com/Erisa',
+  followers_url: 'https://api.github.com/users/Erisa/followers',
+  following_url: 'https://api.github.com/users/Erisa/following{/other_user}',
+  gists_url: 'https://api.github.com/users/Erisa/gists{/gist_id}',
+  starred_url: 'https://api.github.com/users/Erisa/starred{/owner}{/repo}',
+  subscriptions_url: 'https://api.github.com/users/Erisa/subscriptions',
+  organizations_url: 'https://api.github.com/users/Erisa/orgs',
+  repos_url: 'https://api.github.com/users/Erisa/repos',
+  events_url: 'https://api.github.com/users/Erisa/events{/privacy}',
+  received_events_url: 'https://api.github.com/users/Erisa/received_events',
+  type: 'User',
+  site_admin: false,
+  name: 'Erisa A',
+  company: '@Tailscale',
+  blog: 'https://erisa.uk',
+  location: 'Wales, UK',
+  email: null,
+  hireable: null,
+  bio: 'Senior Support Engineer @tailscale & weirdo with a passion for making a mess of things.',
+  twitter_username: null,
+  public_repos: 108,
+  public_gists: 33,
+  followers: 676,
+  following: 272,
+  created_at: '2015-08-27T19:43:47Z',
+  updated_at: '2025-08-31T14:58:02Z',
+};
+
+export default user;

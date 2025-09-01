@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RepoList } from './repo-list';
-import { Repository } from '../../interfaces';
+import repos from '../../mocks/repo';
 
 describe('RepoList', () => {
   let component: RepoList;
@@ -15,127 +15,6 @@ describe('RepoList', () => {
 
     fixture = TestBed.createComponent(RepoList);
     component = fixture.componentInstance;
-    const repos: Repository[] = [{
-      id: 567052265,
-      node_id: 'R_kgDOIcyH6Q',
-      name: '.github',
-      full_name: 'Erisa/.github',
-      private: false,
-      owner: {
-        login: 'Erisa',
-        id: 14004943,
-        node_id: 'MDQ6VXNlcjE0MDA0OTQz',
-        avatar_url: 'https://avatars.githubusercontent.com/u/14004943?v=4',
-        gravatar_id: '',
-        url: 'https://api.github.com/users/Erisa',
-        html_url: 'https://github.com/Erisa',
-        followers_url: 'https://api.github.com/users/Erisa/followers',
-        following_url:
-          'https://api.github.com/users/Erisa/following{/other_user}',
-        gists_url: 'https://api.github.com/users/Erisa/gists{/gist_id}',
-        starred_url:
-          'https://api.github.com/users/Erisa/starred{/owner}{/repo}',
-        subscriptions_url: 'https://api.github.com/users/Erisa/subscriptions',
-        organizations_url: 'https://api.github.com/users/Erisa/orgs',
-        repos_url: 'https://api.github.com/users/Erisa/repos',
-        events_url: 'https://api.github.com/users/Erisa/events{/privacy}',
-        received_events_url:
-          'https://api.github.com/users/Erisa/received_events',
-        type: 'User',
-        site_admin: false,
-        score: 1,
-      },
-      html_url: 'https://github.com/Erisa/.github',
-      description: null,
-      fork: false,
-      url: 'https://api.github.com/repos/Erisa/.github',
-      forks_url: 'https://api.github.com/repos/Erisa/.github/forks',
-      keys_url: 'https://api.github.com/repos/Erisa/.github/keys{/key_id}',
-      collaborators_url:
-        'https://api.github.com/repos/Erisa/.github/collaborators{/collaborator}',
-      teams_url: 'https://api.github.com/repos/Erisa/.github/teams',
-      hooks_url: 'https://api.github.com/repos/Erisa/.github/hooks',
-      issue_events_url:
-        'https://api.github.com/repos/Erisa/.github/issues/events{/number}',
-      events_url: 'https://api.github.com/repos/Erisa/.github/events',
-      assignees_url:
-        'https://api.github.com/repos/Erisa/.github/assignees{/user}',
-      branches_url:
-        'https://api.github.com/repos/Erisa/.github/branches{/branch}',
-      tags_url: 'https://api.github.com/repos/Erisa/.github/tags',
-      blobs_url: 'https://api.github.com/repos/Erisa/.github/git/blobs{/sha}',
-      git_tags_url: 'https://api.github.com/repos/Erisa/.github/git/tags{/sha}',
-      git_refs_url: 'https://api.github.com/repos/Erisa/.github/git/refs{/sha}',
-      trees_url: 'https://api.github.com/repos/Erisa/.github/git/trees{/sha}',
-      statuses_url: 'https://api.github.com/repos/Erisa/.github/statuses/{sha}',
-      languages_url: 'https://api.github.com/repos/Erisa/.github/languages',
-      stargazers_url: 'https://api.github.com/repos/Erisa/.github/stargazers',
-      contributors_url:
-        'https://api.github.com/repos/Erisa/.github/contributors',
-      subscribers_url: 'https://api.github.com/repos/Erisa/.github/subscribers',
-      subscription_url:
-        'https://api.github.com/repos/Erisa/.github/subscription',
-      commits_url: 'https://api.github.com/repos/Erisa/.github/commits{/sha}',
-      git_commits_url:
-        'https://api.github.com/repos/Erisa/.github/git/commits{/sha}',
-      comments_url:
-        'https://api.github.com/repos/Erisa/.github/comments{/number}',
-      issue_comment_url:
-        'https://api.github.com/repos/Erisa/.github/issues/comments{/number}',
-      contents_url:
-        'https://api.github.com/repos/Erisa/.github/contents/{+path}',
-      compare_url:
-        'https://api.github.com/repos/Erisa/.github/compare/{base}...{head}',
-      merges_url: 'https://api.github.com/repos/Erisa/.github/merges',
-      archive_url:
-        'https://api.github.com/repos/Erisa/.github/{archive_format}{/ref}',
-      downloads_url: 'https://api.github.com/repos/Erisa/.github/downloads',
-      issues_url: 'https://api.github.com/repos/Erisa/.github/issues{/number}',
-      pulls_url: 'https://api.github.com/repos/Erisa/.github/pulls{/number}',
-      milestones_url:
-        'https://api.github.com/repos/Erisa/.github/milestones{/number}',
-      notifications_url:
-        'https://api.github.com/repos/Erisa/.github/notifications{?since,all,participating}',
-      labels_url: 'https://api.github.com/repos/Erisa/.github/labels{/name}',
-      releases_url: 'https://api.github.com/repos/Erisa/.github/releases{/id}',
-      deployments_url: 'https://api.github.com/repos/Erisa/.github/deployments',
-      created_at: '2022-11-17T00:54:41Z',
-      updated_at: '2025-06-11T12:14:40Z',
-      pushed_at: '2022-11-17T00:56:12Z',
-      git_url: 'git://github.com/Erisa/.github.git',
-      ssh_url: 'git@github.com:Erisa/.github.git',
-      clone_url: 'https://github.com/Erisa/.github.git',
-      svn_url: 'https://github.com/Erisa/.github',
-      homepage: null,
-      size: 1,
-      stargazers_count: 2,
-      watchers_count: 2,
-      language: null,
-      has_issues: true,
-      has_projects: true,
-      has_downloads: true,
-      has_wiki: true,
-      has_pages: false,
-      has_discussions: false,
-      forks_count: 0,
-      mirror_url: null,
-      archived: false,
-      disabled: false,
-      open_issues_count: 0,
-      license: null,
-      allow_forking: true,
-      is_template: false,
-      web_commit_signoff_required: false,
-      topics: [],
-      visibility: 'public',
-      forks: 0,
-      open_issues: 0,
-      watchers: 2,
-      default_branch: 'main',
-      temp_clone_token: 'temp_clone_token',
-      subscribers_count: 0, 
-      network_count: 0
-    }];
     fixture.componentRef.setInput('repos', repos);
     fixture.detectChanges();
   });
