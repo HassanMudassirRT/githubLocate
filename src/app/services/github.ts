@@ -28,14 +28,6 @@ export class GithubService {
     return this.http.get<Repository[]>(`${this.apiUrl}/users/${username}/repos?per_page=${perPage}&page=${page}`);
   }
 
-  getUserFollowers(username: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/users/${username}/followers`);
-  }
-
-  getUserFollowing(username: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/users/${username}/following`);
-  }
-
   getUserSocials(username: string): Observable<Social[]> {
     return this.http.get<Social[]>(`${this.apiUrl}/users/${username}/social_accounts`);
   }
