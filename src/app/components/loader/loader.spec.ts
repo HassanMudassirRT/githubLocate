@@ -14,10 +14,11 @@ describe('Loader', () => {
 
     fixture = TestBed.createComponent(Loader);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('label', 'Label message');
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create Loader', () => {
     expect(component).toBeTruthy();
   });
 });

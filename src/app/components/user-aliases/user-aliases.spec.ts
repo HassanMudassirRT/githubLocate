@@ -14,10 +14,12 @@ describe('UserAliases', () => {
 
     fixture = TestBed.createComponent(UserAliases);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('name', 'Erisa A');
+    fixture.componentRef.setInput('login', 'erisa');
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create UserAliases', () => {
     expect(component).toBeTruthy();
   });
 });

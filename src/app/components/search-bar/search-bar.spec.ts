@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchBar } from './search-bar';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('SearchBar', () => {
   let component: SearchBar;
@@ -8,7 +9,8 @@ describe('SearchBar', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchBar]
+      imports: [SearchBar],
+      providers: [provideHttpClient()]
     })
     .compileComponents();
 
@@ -17,7 +19,7 @@ describe('SearchBar', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create SearchBar', () => {
     expect(component).toBeTruthy();
   });
 });

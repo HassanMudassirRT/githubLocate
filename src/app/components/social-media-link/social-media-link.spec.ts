@@ -8,16 +8,17 @@ describe('SocialMediaLink', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SocialMediaLink]
-    })
-    .compileComponents();
+      imports: [SocialMediaLink],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SocialMediaLink);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('url', 'https://github.com/');
+    fixture.componentRef.setInput('provider', 'github');
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create SocialMediaLink', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -14,10 +14,11 @@ describe('UserBio', () => {
 
     fixture = TestBed.createComponent(UserBio);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('bio', 'hello world');
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create UserBio', () => {
     expect(component).toBeTruthy();
   });
 });
