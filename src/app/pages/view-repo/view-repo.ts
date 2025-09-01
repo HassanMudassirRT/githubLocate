@@ -47,7 +47,7 @@ export class ViewRepo {
     rows: 10,
   });
 
-  protected rowsPerPageOptions = computed(() => {
+  rowsPerPageOptions = computed(() => {
     const total = this.totalRecords();
     const options = [10, 30, 50, 100];
     if (total > 0 && total < options[0]) {

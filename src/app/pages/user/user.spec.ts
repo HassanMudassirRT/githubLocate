@@ -1,15 +1,16 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideRouter } from '@angular/router';
+
 import { User } from './user';
-import { GitHubService } from '../../services/github';
 import {
   User as mockUser,
   Repo as mockRepos,
   Social as mockSocials,
 } from '../../mocks';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideRouter } from '@angular/router';
+import { GitHubService } from '../../services/github';
 
 describe('User', () => {
   let component: User;
