@@ -6,6 +6,7 @@ import {
 } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
+
 import { SearchBar } from './search-bar';
 import { GitHubService } from '../../services/github';
 import { User } from '../../interfaces/user';
@@ -13,7 +14,7 @@ import { User } from '../../interfaces/user';
 describe('SearchBar', () => {
   let component: SearchBar;
   let fixture: ComponentFixture<SearchBar>;
-  let githubService: GitHubService;
+  let githubService: jasmine.SpyObj<GitHubService>;
 
   const mockUsers: User[] = [
     {
@@ -75,7 +76,9 @@ describe('SearchBar', () => {
 
     fixture = TestBed.createComponent(SearchBar);
     component = fixture.componentInstance;
-    githubService = TestBed.inject(GitHubService);
+    githubService = TestBed.inject(
+      GitHubService
+    ) as jasmine.SpyObj<GitHubService>;
     fixture.detectChanges();
   });
 
@@ -87,31 +90,38 @@ describe('SearchBar', () => {
     component.users.set(mockUsers);
 
     component.searchTerm.setValue('');
-    tick(501); 
+    tick(501);
 
     expect(component.users()).toEqual([]);
-    expect(component.hasSearched()).toBe(false);
+    expect(component.hasSearched()).toBeFalse;
   }));
 
   it('should update users signal and set loading state correctly on successful search', fakeAsync(() => {
-    (githubService.searchUsers as jasmine.Spy).and.returnValue(
-      of({ items: mockUsers, total_count: mockUsers.length })
+    githubService.searchUsers.and.returnValue(
+      of({
+        items: mockUsers,
+        total_count: mockUsers.length,
+        incomplete_results: false,
+      })
     );
 
     component.searchTerm.setValue('test');
-    
+
     tick(501);
 
     expect(githubService.searchUsers).toHaveBeenCalledWith('test');
     expect(component.users()).toEqual(mockUsers);
-    expect(component.isLoading()).toBe(false);
-    expect(component.hasSearched()).toBe(true);
+    expect(component.isLoading()).toBeFalse;
+    expect(component.hasSearched()).toBeTrue;
   }));
 
   it('should not call searchUsers if the search term is the same as the previous one', fakeAsync(() => {
-  
-    (githubService.searchUsers as jasmine.Spy).and.returnValue(
-      of({ items: mockUsers, total_count: mockUsers.length })
+    githubService.searchUsers.and.returnValue(
+      of({
+        items: mockUsers,
+        total_count: mockUsers.length,
+        incomplete_results: false,
+      })
     );
     component.searchTerm.setValue('test');
     tick(501);
@@ -123,7 +133,7 @@ describe('SearchBar', () => {
   }));
 
   it('should handle search error and reset loading state', fakeAsync(() => {
-    (githubService.searchUsers as jasmine.Spy).and.returnValue(
+    githubService.searchUsers.and.returnValue(
       throwError(() => new Error('API Error'))
     );
 
@@ -132,13 +142,17 @@ describe('SearchBar', () => {
     tick(501);
 
     expect(component.users()).toEqual([]);
-    expect(component.isLoading()).toBe(false);
-    expect(component.hasSearched()).toBe(true);
+    expect(component.isLoading()).toBeFalse;
+    expect(component.hasSearched()).toBeTrue;
   }));
 
   it('should not call searchUsers until the debounce time has passed', fakeAsync(() => {
-    (githubService.searchUsers as jasmine.Spy).and.returnValue(
-      of({ items: [], total_count: 0 })
+    githubService.searchUsers.and.returnValue(
+      of({
+        items: mockUsers,
+        total_count: mockUsers.length,
+        incomplete_results: false,
+      })
     );
 
     // When a search term is set but the debounce time has not passed

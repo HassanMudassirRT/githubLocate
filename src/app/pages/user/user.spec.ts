@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { provideHttpClient } from '@angular/common/http';
-import { of, throwError } from 'rxjs';
+import { of, throwError, defer } from 'rxjs';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 
 import { User } from './user';
 import {
@@ -15,11 +15,15 @@ import { GitHubService } from '../../services/github';
 describe('User', () => {
   let component: User;
   let fixture: ComponentFixture<User>;
-  let githubService: GitHubService;
+  let githubService: jasmine.SpyObj<GitHubService>;
 
   beforeEach(async () => {
-    const githubServiceSpy = jasmine.createSpyObj('GitHubService', ['getUserDetails', 'getUserRepos', 'getUserSocials']);
-    
+    const githubServiceSpy = jasmine.createSpyObj('GitHubService', [
+      'getUserDetails',
+      'getUserRepos',
+      'getUserSocials',
+    ]);
+
     await TestBed.configureTestingModule({
       imports: [User],
       providers: [
@@ -27,12 +31,14 @@ describe('User', () => {
         { provide: GitHubService, useValue: githubServiceSpy },
         provideRouter([]),
         provideAnimationsAsync(),
-      ]
+      ],
     }).compileComponents();
-    
+
     fixture = TestBed.createComponent(User);
     component = fixture.componentInstance;
-    githubService = TestBed.inject(GitHubService);
+    githubService = TestBed.inject(
+      GitHubService
+    ) as jasmine.SpyObj<GitHubService>;
   });
 
   it('should create User', () => {
@@ -40,15 +46,21 @@ describe('User', () => {
   });
 
   it('should fetch and combine user data on successful service calls', fakeAsync(() => {
-    (githubService.getUserDetails as jasmine.Spy).and.returnValue(of(mockUser));
-    (githubService.getUserRepos as jasmine.Spy).and.returnValue(of(mockRepos));
-    (githubService.getUserSocials as jasmine.Spy).and.returnValue(of(mockSocials));
+    githubService.getUserDetails.and.returnValue(
+      defer(() => Promise.resolve(mockUser))
+    );
+    githubService.getUserRepos.and.returnValue(
+      defer(() => Promise.resolve(mockRepos))
+    );
+    githubService.getUserSocials.and.returnValue(
+      defer(() => Promise.resolve(mockSocials))
+    );
 
     fixture.componentRef.setInput('username', 'erisa');
     fixture.detectChanges();
 
-    expect(component.isLoading()).toBe(false);
-    expect(component.isError()).toBe(false);
+    expect(component.isLoading()).toBeTrue;
+    expect(component.isError()).toBeFalse;
 
     component.combinedData$.subscribe((data) => {
       expect(data.user).toEqual(mockUser);
@@ -62,30 +74,37 @@ describe('User', () => {
   }));
 
   it('should handle errors gracefully and set isLoading and isError correctly', fakeAsync(() => {
-    (githubService.getUserDetails as jasmine.Spy).and.returnValue(throwError(() => new Error('Service Error')));
-    (githubService.getUserRepos as jasmine.Spy).and.returnValue(of([]));
-    (githubService.getUserSocials as jasmine.Spy).and.returnValue(of([]));
+    githubService.getUserDetails.and.returnValue(
+      throwError(() => new Error('Service Error'))
+    );
+    githubService.getUserRepos.and.returnValue(of([]));
+    githubService.getUserSocials.and.returnValue(of([]));
 
     fixture.componentRef.setInput('username', 'testuser');
     fixture.detectChanges();
 
-    expect(component.isLoading()).toBe(false);
-    expect(component.isError()).toBe(true);
+    expect(component.isLoading()).toBeFalse;
+    expect(component.isError()).toBeTrue;
   }));
 
   it('should re-trigger the effect when the username input changes', fakeAsync(() => {
-    (githubService.getUserDetails as jasmine.Spy).and.returnValue(of(mockUser));
-    (githubService.getUserRepos as jasmine.Spy).and.returnValue(of(mockRepos));
-    (githubService.getUserSocials as jasmine.Spy).and.returnValue(of(mockSocials));
-    fixture.componentRef.setInput('username', 'erisa');
-    fixture.detectChanges();
-    
-    (githubService.getUserDetails as jasmine.Spy).calls.reset();
+    githubService.getUserDetails.and.returnValue(
+      defer(() => Promise.resolve(mockUser))
+    );
+    githubService.getUserRepos.and.returnValue(
+      defer(() => Promise.resolve(mockRepos))
+    );
+    githubService.getUserSocials.and.returnValue(
+      defer(() => Promise.resolve(mockSocials))
+    );
     fixture.componentRef.setInput('username', 'new-user');
     fixture.detectChanges();
-  
+
+    expect(component.isLoading()).toBeTrue;
+    tick();
+
     expect(githubService.getUserDetails).toHaveBeenCalledWith('new-user');
-    expect(component.isLoading()).toBe(false);
-    expect(component.isError()).toBe(false);
+    expect(component.isLoading()).toBeFalse;
+    expect(component.isError()).toBeFalse;
   }));
 });
