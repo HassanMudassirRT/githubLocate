@@ -14,7 +14,7 @@ import {
 } from 'rxjs';
 import { Loader } from '../loader/loader';
 import { UserSearchItem } from '../user-search-item/user-search-item';
-import { GithubService } from '../../services/github';
+import { GitHubService } from '../../services/github';
 import { User } from '../../interfaces/user';
 
 @Component({
@@ -37,7 +37,7 @@ export class SearchBar implements OnInit {
   hasSearched = signal(false);
   users = signal<User[]>([]);
 
-  private githubService = inject(GithubService);
+  private githubService = inject(GitHubService);
 
   ngOnInit(): void {
     this.searchTerm.valueChanges

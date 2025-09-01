@@ -18,7 +18,7 @@ import {
   Loader,
   ErrorMessage,
 } from '../../components';
-import { GithubService } from '../../services/github';
+import { GitHubService } from '../../services/github';
 import { CombinedUserData } from '../../interfaces';
 
 @Component({
@@ -51,7 +51,7 @@ export class User {
 
   combinedData$!: Observable<CombinedUserData>;
 
-  private githubService = inject(GithubService);
+  private githubService = inject(GitHubService);
 
   constructor() {
     effect(() => {

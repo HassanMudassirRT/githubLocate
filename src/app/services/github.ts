@@ -12,7 +12,7 @@ import {
 @Injectable({
   providedIn: 'root',
 })
-export class GithubService {
+export class GitHubService {
   private http = inject(HttpClient);
   private apiUrl = 'https://api.github.com';
 

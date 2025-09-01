@@ -18,7 +18,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { RepoCard, ErrorMessage, Loader } from '../../components';
-import { GithubService } from '../../services/github';
+import { GitHubService } from '../../services/github';
 import { Repository } from '../../interfaces';
 
 @Component({
@@ -56,7 +56,7 @@ export class ViewRepo {
     return options;
   });
 
-  private githubService = inject(GithubService);
+  private githubService = inject(GitHubService);
 
   constructor() {
     effect(() => {
