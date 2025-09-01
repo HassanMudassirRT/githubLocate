@@ -9,7 +9,15 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { DividerModule } from 'primeng/divider';
 import { RippleModule } from 'primeng/ripple';
-import { RepoList, UserStats, UserSocials, UserAliases, UserBio, Loader, ErrorMessage } from '../../components';
+import {
+  RepoList,
+  UserStats,
+  UserSocials,
+  UserAliases,
+  UserBio,
+  Loader,
+  ErrorMessage,
+} from '../../components';
 import { GithubService } from '../../services/github';
 import { CombinedUserData } from '../../interfaces';
 
@@ -32,8 +40,8 @@ import { CombinedUserData } from '../../interfaces';
     UserAliases,
     UserBio,
     Loader,
-    ErrorMessage
-],
+    ErrorMessage,
+  ],
   templateUrl: './user.html',
 })
 export class User {
@@ -66,22 +74,25 @@ export class User {
           return {
             user: data.user,
             repos: data.repos.slice(0, 5),
-            socials: [...data.socials, {url: data.user.html_url, provider: "GitHub"} ],
+            socials: [
+              ...data.socials,
+              { url: data.user.html_url, provider: 'GitHub' },
+            ],
             userStats,
           };
         }),
-        
+
         catchError((err) => {
           console.error('Failed to load user data:', err);
           this.isLoading.set(false);
           this.isError.set(true);
-          
+
           return EMPTY;
         }),
 
-        tap(() => { 
-          this.isLoading.set(false)}
-        )
+        tap(() => {
+          this.isLoading.set(false);
+        })
       );
     });
   }
