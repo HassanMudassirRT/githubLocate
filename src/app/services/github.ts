@@ -5,7 +5,6 @@ import {
   DetailedUser,
   Repository,
   Social,
-  User,
   UserSearchResponse,
 } from '../interfaces';
 
